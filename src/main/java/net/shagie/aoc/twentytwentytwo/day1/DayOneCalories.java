@@ -5,10 +5,8 @@ import net.shagie.aoc.twentytwentytwo.util.AOCMarker;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.stream.IntStream;
 
 @Component("day1")
 @AOC(day = 1)
@@ -19,15 +17,14 @@ public class DayOneCalories implements AOCMarker {
 
     @Override
     public void run(String... args) {
-        List<Integer> sums = new ArrayList<>();
-        for(String chunk : txt.split("\n\n")) {
-            sums.add(Arrays.stream(chunk.split("\n"))
-                    .mapToInt(Integer::parseInt)
-                    .sum());
-        }
-        Collections.sort(sums);
-        System.out.println(sums.get(sums.size() - 1));
-        System.out.println(sums.get(sums.size() - 1) +
-                sums.get(sums.size() - 2) + sums.get(sums.size() - 3));
+        int[] results = Arrays.stream(txt.split("\n\n"))
+                .map(s -> Arrays.stream(s.split("\n")))
+                .map(stringStream -> stringStream.mapToInt(Integer::valueOf).sum())
+                .flatMapToInt(IntStream::of)
+                .sorted()
+                .toArray()
+                ;
+        System.out.println(results[results.length -1]);
+        System.out.println(results[results.length -1] + results[results.length -2] + results[results.length -3]);
     }
 }
