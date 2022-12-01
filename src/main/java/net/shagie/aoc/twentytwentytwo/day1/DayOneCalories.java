@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
-import java.util.stream.IntStream;
+import java.util.Collections;
+import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 @Component("day1")
 @AOC(day = 1)
@@ -17,14 +19,16 @@ public class DayOneCalories implements AOCMarker {
 
     @Override
     public void run(String... args) {
-        int[] results = Arrays.stream(txt.split("\n\n"))
+        Supplier<Stream<Integer>> soFar = () -> Arrays.stream(txt.split("\n\n"))
                 .map(s -> Arrays.stream(s.split("\n")))
                 .map(stringStream -> stringStream.mapToInt(Integer::valueOf).sum())
-                .flatMapToInt(IntStream::of)
-                .sorted()
-                .toArray()
                 ;
-        System.out.println(results[results.length -1]);
-        System.out.println(results[results.length -1] + results[results.length -2] + results[results.length -3]);
+
+        System.out.println(soFar.get().reduce(0, Integer::max));
+        System.out.println(soFar.get()
+                .sorted(Collections.reverseOrder())
+                .limit(3)
+                .mapToInt(Integer::intValue)
+                .sum());
     }
 }
