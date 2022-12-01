@@ -6,10 +6,20 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.List;
 
 @Component("resourceReader")
 public class ResourceReader {
     public static String readFileToString(String path) throws IOException {
         return FileUtils.readFileToString(ResourceUtils.getFile(path), StandardCharsets.UTF_8);
     }
+
+    public static List<List<String>> readFileToLoLoS(String path) throws IOException {
+        return Arrays.stream(FileUtils.readFileToString(ResourceUtils.getFile(path), StandardCharsets.UTF_8)
+                        .split("\n\n"))
+                .map(chunk -> Arrays.asList(chunk.split("\n")))
+                .toList();
+    }
+
 }
