@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-@Component("day1")
+@Component("day1supplier")
 @AOC(day = 1)
 @SuppressWarnings("java:S106")  // System.out.println is fine
 public class DayOneCalories implements AOCDay {
