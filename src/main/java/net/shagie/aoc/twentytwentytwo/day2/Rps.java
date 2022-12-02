@@ -1,18 +1,23 @@
 package net.shagie.aoc.twentytwentytwo.day2;
 
 public enum Rps {
-    ROCK(1, "A", "X"),
-    PAPER(2, "B", "Y"),
-    SCISSORS(3, "C", "Z");
+    ROCK(1),
+    PAPER(2),
+    SCISSORS(3);
 
     final int score;
-    final String they;
-    final String me;
 
-    Rps(int score, String they, String me) {
+    Rps(int score) {
         this.score = score;
-        this.they = they;
-        this.me = me;
+    }
+
+    static Rps abcxyz2Rps(String abc) {
+        return switch (abc) {
+            case "A", "X" -> ROCK;
+            case "B", "Y" -> PAPER;
+            case "C", "Z" -> SCISSORS;
+            default -> ROCK;    // Poor predictable Bart
+        };
     }
 
     static Wld beats(Rps them, Rps us) {
