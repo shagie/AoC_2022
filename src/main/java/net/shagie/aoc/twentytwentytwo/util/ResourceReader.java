@@ -10,7 +10,11 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component("resourceReader")
+@SuppressWarnings("unused") // used via SPEL
 public class ResourceReader {
+    private ResourceReader() {
+    }
+
     public static String readFileToString(String path) throws IOException {
         return FileUtils.readFileToString(ResourceUtils.getFile(path), StandardCharsets.UTF_8);
     }
@@ -22,4 +26,9 @@ public class ResourceReader {
                 .toList();
     }
 
+    public static List<String> readFileToLoS(String path) throws IOException {
+        return Arrays.stream(FileUtils.readFileToString(ResourceUtils.getFile(path), StandardCharsets.UTF_8)
+                        .split("\n"))
+                .toList();
+    }
 }

@@ -5,8 +5,8 @@ import net.shagie.aoc.twentytwentytwo.util.AbstractAOCDay;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -14,15 +14,15 @@ import java.util.function.Function;
 @AOC(day = 2)
 @SuppressWarnings("java:S106")  // System.out.println is fine
 public class DayTwoRockPaperScissors extends AbstractAOCDay {
-    @Value("#{resourceReader.readFileToString('classpath:day2/data.txt')}")
-    String txt;
+    @Value("#{resourceReader.readFileToLoS('classpath:day2/data.txt')}")
+    List<String> txt;
 
     @Override
     public void partOne() {
         record Round(Rps t, Rps u) {
         }
 
-        int score = Arrays.stream(txt.split("\n"))
+        int score = txt.stream()
                 .map(s -> s.split(" "))
                 .map(a -> new Round(Rps.abcxyz2Rps(a[0]), Rps.abcxyz2Rps(a[1])))
                 .mapToInt(er -> er.u.score + Rps.beats(er.t, er.u).score)
@@ -53,7 +53,7 @@ public class DayTwoRockPaperScissors extends AbstractAOCDay {
         record Round(Rps them, Rps us) {
         }
 
-        int score = Arrays.stream(txt.split("\n"))
+        int score = txt.stream()
                 .map(l -> l.split(" "))
                 .map(a -> new Round(Rps.abcxyz2Rps(a[0]),
                         flookup.get(Rps.abcxyz2Rps(a[0])).apply(Wld.xyz2Wld((a[1])))
