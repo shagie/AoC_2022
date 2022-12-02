@@ -1,6 +1,6 @@
 package net.shagie.aoc.twentytwentytwo.util;
 
-@SuppressWarnings("java:S106")  // System.out.println is fine
+@SuppressWarnings({"java:S106", "unused"})  // System.out.println is fine
 public class AbstractAOCDay implements AOCDay {
 
     @Override

@@ -15,9 +15,9 @@ import java.util.stream.Stream;
 @SuppressWarnings("java:S106")  // System.out.println is fine
 public class DayOneCalories implements AOCDay {
     @Value("#{resourceReader.readFileToLoLoS('classpath:day1/input.txt')}")
-    List<List<String>> txt;
+    private List<List<String>> txt;
 
-    Supplier<Stream<Integer>> soFar = () -> txt.stream().map(l -> l.stream().mapToInt(Integer::valueOf).sum());
+    private final Supplier<Stream<Integer>> soFar = () -> txt.stream().map(l -> l.stream().mapToInt(Integer::valueOf).sum());
 
     @Override
     public void partOne() {
