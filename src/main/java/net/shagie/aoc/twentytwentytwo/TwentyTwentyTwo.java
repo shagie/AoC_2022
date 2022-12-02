@@ -33,8 +33,8 @@ public class TwentyTwentyTwo implements CommandLineRunner, ApplicationContextAwa
                         .filter(od -> od.day() == Integer.parseInt(args[0])).isPresent())
                 .forEach(day -> {
                     System.out.println(day.getClass().getAnnotation(Component.class).value());
-                    day.partOne(args);
-                    day.partTwo(args);
+                    day.partOne();
+                    day.partTwo();
                 });
     }
 

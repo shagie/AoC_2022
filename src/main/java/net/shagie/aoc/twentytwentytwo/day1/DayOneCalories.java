@@ -20,12 +20,12 @@ public class DayOneCalories implements AOCDay {
     Supplier<Stream<Integer>> soFar = () -> txt.stream().map(l -> l.stream().mapToInt(Integer::valueOf).sum());
 
     @Override
-    public void partOne(String... args) {
+    public void partOne() {
         System.out.println(soFar.get().reduce(0, Integer::max));
     }
 
     @Override
-    public void partTwo(String... args) {
+    public void partTwo() {
         System.out.println(soFar.get()
                 .sorted(Collections.reverseOrder())
                 .limit(3)

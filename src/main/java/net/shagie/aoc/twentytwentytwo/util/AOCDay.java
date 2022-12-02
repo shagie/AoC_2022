@@ -2,7 +2,7 @@ package net.shagie.aoc.twentytwentytwo.util;
 
 public interface AOCDay {
 
-    void partOne(String... args);
+    void partOne();
 
-    void partTwo(String... args);
+    void partTwo();
 }

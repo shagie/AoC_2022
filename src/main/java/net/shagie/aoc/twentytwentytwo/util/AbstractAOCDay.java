@@ -4,12 +4,12 @@ package net.shagie.aoc.twentytwentytwo.util;
 public class AbstractAOCDay implements AOCDay {
 
     @Override
-    public void partOne(String... args) {
+    public void partOne() {
         System.out.println("Part One");
     }
 
     @Override
-    public void partTwo(String... args) {
+    public void partTwo() {
         System.out.println("Part Two");
     }
 }

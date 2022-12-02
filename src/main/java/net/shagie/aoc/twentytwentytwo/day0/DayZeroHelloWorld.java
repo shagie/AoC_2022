@@ -15,12 +15,12 @@ public class DayZeroHelloWorld implements AOCDay {
     String txt;
 
     @Override
-    public void partOne(String... args) {
+    public void partOne() {
         System.out.println(txt);
     }
 
     @Override
-    public void partTwo(String... args) {
+    public void partTwo() {
         System.out.println(txt.toLowerCase(Locale.US));
     }
 }
