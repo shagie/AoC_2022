@@ -16,32 +16,8 @@ public class Day5Stacks implements AOCDay {
 
     @Override
     public void partOne() {
-        List<String> init = txt.get(0);
         List<String> moves = txt.get(1);
-        String[] sc = init.get(init.size() - 1).trim().split("\s+");
-        int stackCount = sc.length;
-
-        // [V] [G] [C] [Q] [T] [J] [P] [B] [M]
-        //  1   2   3   4   5   6   7   8   9
-
-        List<Deque<Character>> stacks = new ArrayList<>(stackCount);
-        for (int i = 0; i < stackCount; i++) {
-            stacks.add(i, new LinkedList<>());
-        }
-
-        ListIterator<String> li = init.listIterator(init.size());   // start at one back from last position
-        while (li.hasPrevious()) {
-            String line = li.previous();
-            for (int pos = 0; pos < stackCount; pos++) {
-                int col = 1 + pos * 4;
-                if (line.length() >= col) {
-                    Character p = line.charAt(1 + pos * 4);
-                    if (!p.equals(' ')) {
-                        stacks.get(pos).push(p);
-                    }
-                }
-            }
-        }
+        List<Deque<Character>> stacks = getStacks(txt.get(0));
 
         for (String line : moves) {
             String[] parts = line.split(" ");
@@ -63,15 +39,9 @@ public class Day5Stacks implements AOCDay {
         System.out.println();
     }
 
-    @Override
-    public void partTwo() {
-        List<String> init = txt.get(0);
-        List<String> moves = txt.get(1);
-        String[] sc = init.get(init.size() - 1).trim().split("\s+");
+    private static List<Deque<Character>> getStacks(List<String> init) {
+        String[] sc = init.get(init.size() - 1).trim().split("\\s+");
         int stackCount = sc.length;
-
-        // [V] [G] [C] [Q] [T] [J] [P] [B] [M]
-        //  1   2   3   4   5   6   7   8   9
 
         List<Deque<Character>> stacks = new ArrayList<>(stackCount);
         for (int i = 0; i < stackCount; i++) {
@@ -91,6 +61,13 @@ public class Day5Stacks implements AOCDay {
                 }
             }
         }
+        return stacks;
+    }
+
+    @Override
+    public void partTwo() {
+        List<String> moves = txt.get(1);
+        List<Deque<Character>> stacks = getStacks(txt.get(0));
 
         for (String line : moves) {
             String[] parts = line.split(" ");
