@@ -36,16 +36,12 @@ public class Day5Stacks implements AOCDay {
                 int col = 1 + pos * 4;
                 if (line.length() >= col) {
                     Character p = line.charAt(1 + pos * 4);
-                    System.out.println(pos + " " + p);
                     if (!p.equals(' ')) {
                         stacks.get(pos).push(p);
                     }
                 }
             }
-            System.out.println();
-            System.out.println();
         }
-        System.out.println("Now do moves...");
 
         for (String line : moves) {
             String[] parts = line.split(" ");
@@ -89,16 +85,12 @@ public class Day5Stacks implements AOCDay {
                 int col = 1 + pos * 4;
                 if (line.length() >= col) {
                     Character p = line.charAt(1 + pos * 4);
-                    System.out.println(pos + " " + p);
                     if (!p.equals(' ')) {
                         stacks.get(pos).push(p);
                     }
                 }
             }
-            System.out.println();
-            System.out.println();
         }
-        System.out.println("Now do moves...");
 
         for (String line : moves) {
             String[] parts = line.split(" ");
