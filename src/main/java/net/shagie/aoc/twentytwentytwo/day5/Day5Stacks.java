@@ -16,8 +16,8 @@ public class Day5Stacks implements AOCDay {
 
     @Override
     public void partOne() {
-        List<String> init = new ArrayList<>(txt.get(0));
-        List<String> moves = new ArrayList<>(txt.get(1));
+        List<String> init = txt.get(0);
+        List<String> moves = txt.get(1);
         String[] sc = init.get(init.size() - 1).trim().split("\s+");
         int stackCount = sc.length;
 
@@ -29,11 +29,9 @@ public class Day5Stacks implements AOCDay {
             stacks.add(i, new LinkedList<>());
         }
 
-        Collections.reverse(init);
-        Deque<String> ll = new LinkedList(init);
-        ll.removeFirst();
-
-        for (String line : ll) {
+        ListIterator<String> li = init.listIterator(init.size());   // start at one back from last position
+        while (li.hasPrevious()) {
+            String line = li.previous();
             for (int pos = 0; pos < stackCount; pos++) {
                 int col = 1 + pos * 4;
                 if (line.length() >= col) {
@@ -71,8 +69,8 @@ public class Day5Stacks implements AOCDay {
 
     @Override
     public void partTwo() {
-        List<String> init = new ArrayList<>(txt.get(0));
-        List<String> moves = new ArrayList<>(txt.get(1));
+        List<String> init = txt.get(0);
+        List<String> moves = txt.get(1);
         String[] sc = init.get(init.size() - 1).trim().split("\s+");
         int stackCount = sc.length;
 
@@ -84,11 +82,9 @@ public class Day5Stacks implements AOCDay {
             stacks.add(i, new LinkedList<>());
         }
 
-        Collections.reverse(init);
-        Deque<String> ll = new LinkedList(init);
-        ll.removeFirst();
-
-        for (String line : ll) {
+        ListIterator<String> li = init.listIterator(init.size());   // start at one back from last position
+        while (li.hasPrevious()) {
+            String line = li.previous();
             for (int pos = 0; pos < stackCount; pos++) {
                 int col = 1 + pos * 4;
                 if (line.length() >= col) {
