@@ -56,10 +56,12 @@ public class Day7Something implements AOCDay {
     }
 
     static long sums;   // I feel dirty
+    static Map<String, Long> heres = new LinkedHashMap<>();
 
     static void descend(Node node, Map<String, Long> data) {
         final long atMost = 100000L;
         long here = node.size();
+        heres.put(node.path, here);
         if (here < atMost) {
             data.put(node.path, here);
             System.out.print("* ");
@@ -97,6 +99,19 @@ public class Day7Something implements AOCDay {
 
     @Override
     public void partTwo() {
+        // depends on part 1.
 
+        long avail = 70_000_000L - heres.get("/");
+        System.out.println("avail: " + avail);  // 25623268
+        long needed = 30_000_000L - avail;
+        heres.put("needed", needed);
+        heres.put("there", 30_000_000L);
+
+        heres.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue())
+                .forEachOrdered(e ->
+                        System.out.println(e.getValue() + "\t" + e.getKey())
+                );
+        // eyeballed - not proud, tired.
     }
 }
